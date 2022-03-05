@@ -1,11 +1,11 @@
-name: LogSnag
+name: Log to LogSnag
 description: Send messages to LogSnag
 
 author: Jo Colina
 
 branding:
-  color:
-  icon:
+  color: gray-dark
+  icon: align-center
 
 inputs:
   token:
