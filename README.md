@@ -20,7 +20,7 @@ jobs:
 
       - run: something to publish
 
-      - uses: jsmrcaga/action-logsnag
+      - uses: jsmrcaga/action-logsnag@v0.0.2
         with:
           token: ${{ secrets.LOGSNAG_TOKEN }}
           project: my-project
