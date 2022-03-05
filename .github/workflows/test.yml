@@ -1,0 +1,43 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - master
+  release:
+    types:
+      - published
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./
+        with:
+          token: ${{ secrets.LOGSNAG_TOKEN }}
+          project: 'action-logsnag'
+          channel: test
+          event: 'Test event'
+          description: 'This fires whenever a new pull request is made'
+          notify: false
+
+  publish:
+    runs-on: ubuntu-latest
+
+    needs:
+      - test
+
+    if: ${{ github.event_name == 'release' }}
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./
+        with:
+          token: ${{ secrets.LOGSNAG_TOKEN }}
+          project: 'action-logsnag'
+          channel: publish
+          event: 'Published ${{ github.event.release.tag_name }}'
+          description: 'Version ${{ github.event.release.tag_name }} published'
+          icon: 🎉
+          notify: true
