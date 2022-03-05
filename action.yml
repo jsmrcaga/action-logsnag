@@ -1,0 +1,43 @@
+name: LogSnag
+description: Send messages to LogSnag
+
+author: Jo Colina
+
+branding:
+  color:
+  icon:
+
+inputs:
+  token:
+    description: Your LogSnag token, can be found at https://app.logsnag.com/dashboard/profile/api
+    required: true
+
+  project:
+    description: The project to which you need to send the log. Must be a slug.
+    required: true
+
+  channel:
+    description: The channel of the project to which you need to send the log. Must be a slug.
+    required: true
+
+  event:
+    description: "The name of your log. Ex: 'New subscriber!'"
+    required: true
+
+  description:
+    description: A longer description of your log.
+    required: false
+    default: ''
+
+  icon:
+    description: An icon emoji
+    required: false
+    default: ⏰
+
+  notify:
+    description: Should LogSnag send you a notification? True by default
+    default: true
+
+runs:
+  using: docker
+  image: Dockerfile
